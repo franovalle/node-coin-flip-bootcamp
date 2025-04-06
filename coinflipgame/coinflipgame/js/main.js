@@ -9,7 +9,7 @@ function playGame(){
     .then((data) => {
       console.log(data);
       document.querySelector('h2').textContent = data.display
-      //document.querySelector("#personStatus").textContent = data.status
+      //document.querySelector('h3').textContent = data.results
       //document.querySelector("#personOccupation").textContent = data.currentOccupation
     });
 

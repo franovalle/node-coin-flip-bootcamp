@@ -18,14 +18,26 @@ const server = http.createServer(function (req, res) {
 
 
   else if (page == '/api') {
-    const coinToss = Math.floor(Math.random() * 2) 
+    const coinToss = Math.floor(Math.random() * 2)
+    console.log(coinToss)
     if ('choice' in params) {
-      if (params['choice'] === coinToss) {
+      console.log(params['choice'], coinToss)
+      if (params['choice'] == coinToss) {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         const objToJson = {
           display: "You Win!",
-          //results: coinToss,
-          
+          results: coinToss,
+
+        }
+        res.end(JSON.stringify(objToJson));
+      }
+
+      else if  (params['choice'] != coinToss) {
+       
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        const objToJson = {
+          display: "You Lose!",
+          results: coinToss,
         }
         res.end(JSON.stringify(objToJson));
       }
@@ -59,7 +71,7 @@ const server = http.createServer(function (req, res) {
 server.listen(8000);
 
 /*note to self: more thoughts 
- 
+ //display: params['choice'] == coinToss ? "You Win!" : "You Lose",
 //if input 1 = math.random , say you win 
 //if input =1 math.random =0, say you lose 
 //note to self: maybe this will work
